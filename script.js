@@ -41,3 +41,11 @@ const perguntas = [
         ]
     },
 ];
+
+let atual = 0;
+letperguntaAtual;
+
+function mostra perguntas() {
+    perguntaAtual = perguntas[atual];
+
+}
