@@ -6,48 +6,72 @@ const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "Você presencia uma ação de cyberbullying. O que você faz sobre?",
         alternativas: [
-            "Isso é assustador!",
-            "Isso é maravilhoso!"
+            {
+                texto: "Reportar a situação a um responsável.",
+                afirmacao: "Você é contra o Bullying porém prefere não se envolver diretamente delegando essa responsabilidade a uma autoridade que você julga competente."
+            },
+            {
+                texto:  "Tenta inibir o ato enquanto está ocorrendo.",
+                afirmacao: "Você é o tipo de pessoa que não se cala diante da injustiça e faz de tudo o que está ao seu alcance para preservar um ambiente saudável e sem discriminações."
+            }    
+           
         ]
     },
     {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre esta tecnologia. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
+        enunciado: "As fontes renováveis de energia desempenham um papel crucial na transição para um futuro sustentável. Quanto às fontes de energia renováveis, o que você acha sobre a exploração de novas formas menos poluentes, que automaticamente agridem menos o meio ambiente?",
         alternativas: [
-            "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-            "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
+            {
+                texto: "Concordo, pois os recursos do nosso planeta são finitos, e precisamos explorar formas menos agressivas.",
+                afirmacao: "Você é um cidadão comprometido com a manutenção e bem  do nosso planeta no longo prazo."
+            },
+            {
+                texto:  "Discordo, pois os altos custos do processo acaba  inviabilizando o mesmo.",
+                afirmacao: "Você é uma pessoa que se preocupa com a questão econômica, prezando o valor  dinheiro"
+            }   
+            
         ]
     },
     {
-        enunciado: "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
+        enunciado: "A prática regular  de um esporte melhora  o condicionamento físico e a socialização. Você pratica algum esporte regularmente?",
         alternativas: [
-            "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-            "Me preocupo com as pessoas que perderão seus empregos para máquinas e defendem a importância de proteger os trabalhadores."
+            {
+                texto: "Pratico sempre que possível, pois acredito que dessa forma terei um bom condicionamento físico e uma melhor qualidade de vida.",
+                afirmacao: "Você é uma pessoa que procura cuidar bem do seu corpo praticando exercícios regularmente."
+            },
+            {
+                texto:  "Acredito que a prática de um esporte está ligada apenas ao lazer, e prefiro utilizar o meu tempo estudando  e assistindo séries.",
+                afirmacao: "Você é uma pessoa que prefere ter o seu tempo de lazer voltado a atividades culturais"
+            }             
+           
         ]
-    },
-    {
-        enunciado: "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
-        alternativas: [
-            "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-            "Criar uma imagem utilizando um gerador de imagem de IA."
-        ]
-    },
-    {
-        enunciado: "Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
-        alternativas: [
-           "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-            "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial."
-        ]
-    },
+    }  
 ];
-
 let atual = 0;
-letperguntaAtual;
+let perguntaAtual;
+let historiaFinal = "";
 
-function mostraPergunta() {
+function mostraPergunta(){
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
+    mostraAlternativas();
+}
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas){
+    const botaoAlternativas = document.createElement("button");
+    botaoAlternativas.textContent = alternativa.texto;
+    botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+    caixaAlternativas.appendChild(botaoAlternativas)
+        }
+    }
+
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacao = opcaoSelecionada.afirmacoes;
+    historiaFinal = afirmacao
+    atual++;
+    mostraPergunta();
 }
 
-mostraPergunta(); 
+mostraPergunta();
