@@ -49,3 +49,5 @@ function mostra perguntas() {
     perguntaAtual = perguntas[atual];
 
 }
+
+mostraPergunta();
